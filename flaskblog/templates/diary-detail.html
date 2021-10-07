@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    {% for post in posts %}
+        <h1>{{ post.title }}</h1>
+        <p> By {{ post.author.username}}</p>
+        <p> {{ post.content }} </p>
+        <p> on {{ post.date_posted.strftime('%Y-%m-%d') }} </p>
+    {%  endfor%}
+
+{% endblock content %}

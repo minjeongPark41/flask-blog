@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <h1>{{ post.title }}</h1>
+    <p> By {{ post.author.username}}</p>
+
+    <div>
+        <a class="btn btn-primary" href="{{ url_for('update_post', post_id=post.id ) }}">Update</a> 
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+    </div>
+
+    <p> {{ post.content }} </p>
+    <p> on {{ post.date_posted.strftime('%Y-%m-%d') }} </p>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete Post?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            정말로 삭제하시겠습니까?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+                <input class="btn btn-danger" type="submit" value="Delete">
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock content %}
